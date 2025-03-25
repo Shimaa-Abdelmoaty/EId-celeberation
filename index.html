@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eid Celebration</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Alexandria:wght@400;700&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+    height: 100vh;
+    background-color: #f8f9fa;
+    color: #222;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Background fade-in effect */
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("balloon.png") no-repeat center/cover;
+    opacity: 0; /* Start invisible */
+    animation: fadeInBackground 3s ease-in-out forwards; /* Smooth fade-in */
+    z-index: -1; /* Keep it behind content */
+}
+
+@keyframes fadeInBackground {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+      .eid-text {
+        font-family: "Alexandria", sans-serif;
+        font-size: 35px;
+        color: #ff8c00;
+        text-shadow: 5px 5px 12px rgba(0, 0, 0, 0.3);
+        margin-top: 20px;
+      }
+
+      .logos {
+        display: flex;
+        justify-content: center;
+        gap: 60px;
+        margin-bottom: 25px;
+      }
+
+      .logos img {
+        background: white;
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.3);
+      }
+
+      .logos #prof {
+        border: 1px solid black;
+      }
+
+      .eid-message {
+        font-size: 24px;
+        background: rgba(255, 255, 255, 0.8);
+        padding: 30px;
+        border-radius: 10px;
+        max-width: 35%;
+        margin-top: 20px;
+        text-align: center;
+        font-family: "Alexandria", sans-serif;
+      }
+
+      audio {
+        display: none;
+      }
+
+      .balloon {
+        position: absolute;
+        width: 70px;
+        height: 80px;
+        background-color: red;
+        border-radius: 50%;
+        animation: float 5s infinite ease-in-out;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(100vh);
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.8;
+        }
+        100% {
+          transform: translateY(-20vh);
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="logos">
+      <img src="medicalLogo.webp" alt="شعار 1" />
+      <img id="prof" src="profLogo.webp" alt="شعار 2" />
+    </div>
+    <h1 class="eid-text">🎉✨ عيد فطر مبارك! ✨🎉</h1>
+    <div class="eid-message">
+      قال رسول الله ﷺ: "إِنَّ لِكُلِّ قَوْمٍ عِيدًا، وَهَذَا عِيدُنَا" (متفق
+      عليه). 🕊️🌿<br /><br />
+      كل عام وأنتم بخير بمناسبة عيد الفطر المبارك، أعاده الله عليكم وعلى أحبابكم
+      بالسعادة والفرح، وتقبل الله طاعاتكم وجعل أيامكم مليئة بالخير والبركات.
+      🌙💖<br /><br />
+      نسأل الله أن يديم علينا وعليكم الأفراح، ويكتب لنا جميعًا القبول والرضا.
+      عيدكم سعيد! 🎊🌷<br /><br />
+      مع خالص التهاني،<br />
+      د. محمد سعيد الشرقاوي وإدارة شركة ميديكال ايلاندز & بروف 💼💙
+    </div>
+    <audio id="EidAudio" src="Eid.mp3"></audio>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        let audio = document.getElementById("EidAudio");
+        setTimeout(() => {
+          audio
+            .play()
+            .catch((error) =>
+              console.log(
+                "تشغيل الصوت يحتاج تفاعل المستخدم في بعض المتصفحات:",
+                error
+              )
+            );
+        }, 100);
+      });
+
+      function createBalloon() {
+        const balloon = document.createElement("div");
+        balloon.classList.add("balloon");
+        balloon.style.left = Math.random() * 100 + "vw";
+        balloon.style.backgroundColor = `hsl(${
+          Math.random() * 360
+        }, 100%, 50%)`;
+        balloon.style.animationDuration = Math.random() * 3 + 3 + "s";
+        document.body.appendChild(balloon);
+        setTimeout(() => balloon.remove(), 6000);
+      }
+
+      setInterval(createBalloon, 200);
+    </script>
+  </body>
+</html>
