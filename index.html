@@ -86,6 +86,36 @@ body::before {
       audio {
         display: none;
       }
+      #playSound {
+    margin-top: 20px;
+    padding: 12px 25px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(135deg, #ff8c00, #ff5e00);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Hover Effect */
+#playSound:hover {
+    background: linear-gradient(135deg, #ff5e00, #e04b00);
+    transform: scale(1.05);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Click Effect */
+#playSound:active {
+    transform: scale(0.95);
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
+}
+
 
       .balloon {
         position: absolute;
@@ -128,7 +158,11 @@ body::before {
       مع خالص التهاني،<br />
       د. محمد سعيد الشرقاوي وإدارة شركة ميديكال ايلاندز & بروف 💼💙
     </div>
-    <audio id="EidAudio" src="Eid.mp3"></audio>
+    <button id="playSound">🎶 تشغيل الصوت</button>
+
+    <audio id="EidAudio" src="Eid.mp3" loop></audio>
+
+    
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
@@ -143,6 +177,20 @@ body::before {
               )
             );
         }, 100);
+      });
+      document.addEventListener("DOMContentLoaded", function () {
+        let audio = document.getElementById("EidAudio");
+        let playButton = document.getElementById("playSound");
+
+        playButton.addEventListener("click", function () {
+          if (audio.paused) {
+            audio.play();
+            playButton.textContent = "🔇 إيقاف الصوت";
+          } else {
+            audio.pause();
+            playButton.textContent = "🎶 تشغيل الصوت";
+          }
+        });
       });
 
       function createBalloon() {
